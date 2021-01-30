@@ -10,7 +10,3 @@ const server = app.listen(port, (error) => {
   if (error) return console.log(`Error: ${error}`);
   console.log(`Server is listening on port ${server.address().port}`);
 });
-
-app.get('/', (request, response) => {
-  response.send('Server is running.');
-});

@@ -1,28 +1,14 @@
 const db = require('../database/db');
-const jwt = require('jsonwebtoken');
-
+const auth = require('../auth/auth');
 
 class UserController {
   
-  verifyJWT(req, res, next){
-    const token = req.headers['x-access-token'];
-    if (!token) return res.status(401).json({ auth: false, message: 'Nenhum token fornecido.' });
-    
-    jwt.verify(token, process.env.SECRET, function(err, decoded) {
-      if (err) return res.status(500).json({ auth: false, message: 'Falha ao autenticar token.' });
-      // se tudo estiver ok, salva no request para uso posterior
-      req.userDecodedId = decoded.id;
-      next();
-    });
-  }
 
   async logIn(req, res) {
     const {login, pwd} = req.body;
     const id = await db.checkLogin({login, pwd});
     if (id>0) {
-      const token = jwt.sign({ id }, process.env.SECRET, {
-        expiresIn: 300 // expires in 5min
-      });
+      const token = auth.newJWT(id);
       res.json({ auth: true, token: token });
     } else {
       res.status(500).json({message: 'Login inválido!'});
@@ -36,7 +22,6 @@ class UserController {
   async addUser(req, res) {
     const {login, pwd, isSuper, permissions} = req.body;
     const insertedId = await db.addUser({login, pwd, isSuper, permissions});
-    console.log(insertedId);
     res.json({message: `new user added with id = ${insertedId} `});
   }
 

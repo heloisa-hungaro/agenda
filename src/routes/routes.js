@@ -1,14 +1,19 @@
 const express = require('express');
 const UserController = require('../controllers/UserController');
+const auth = require('../auth/auth');
 
 const router = express.Router();
 
 router.post('/login', UserController.logIn);
 router.post('/logout', UserController.logOut);
-router.get('/users', UserController.verifyJWT, UserController.showAllUsers);
-router.get('/users/:id', UserController.verifyJWT, UserController.showUser);
-router.post('/users', UserController.verifyJWT, UserController.verifyJWT, UserController.addUser);
-router.put('/users/:id', UserController.verifyJWT, UserController.editUser);
-router.delete('/users/:id', UserController.verifyJWT, UserController.delUser);
+router.get('/users', auth.verifyJWT, UserController.showAllUsers);
+router.get('/users/:id', auth.verifyJWT, UserController.showUser);
+router.post('/users', auth.verifyJWT, UserController.addUser);
+router.put('/users/:id', auth.verifyJWT, UserController.editUser);
+router.delete('/users/:id', auth.verifyJWT, UserController.delUser);
+
+router.get('/', (request, response) => {
+  response.send('Server is running!');
+});
 
 module.exports = router;
