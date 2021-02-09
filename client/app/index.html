@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="pt-BR" ng-app="agenda">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Agenda</title>
+  <meta name="author" content="Heloisa Hungaro">
+  <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+  <header>
+    <p>Agenda Residec v2.0</p>
+  </header>
+  <!-- <nav>Links go here and it must be hidden during login</nav> -->
+  <div ng-view></div>
+  <footer>
+    <p>Copyright © 2021 Prodec Informática. Todos os direitos reservados.</p>
+  </footer>
+
+  <!-- angular scripts -->
+  <script src="https://code.angularjs.org/1.8.2/angular.js"></script>
+  <script src="https://code.angularjs.org/1.8.2/angular-route.js"></script>
+  <!-- application scripts -->
+  <script src="app.js"></script>
+  <script src="./services/auth.service.js"></script>
+  <script src="./login/login.controller.js"></script>
+</body>
+
+</html>
