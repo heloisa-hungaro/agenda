@@ -28,16 +28,15 @@ module.exports.checkSuper = async (user_id) => {
   }
 }
 
-
 module.exports.checkLogin = async (user_data) => {
-  const sql = 'SELECT pwd, id FROM users WHERE login=?';
+  const sql = 'SELECT * FROM users WHERE login=?';
   const values = [user_data.login];
   try {
     const [rows] = await promisePool.execute(sql, values);
     if (rows.length>0) {
       pwdMatches = bcrypt.compareSync(user_data.pwd, rows[0].pwd);
       if (pwdMatches) {
-        return rows[0].id;
+        return rows[0];
       } else {
         return 0;
       }

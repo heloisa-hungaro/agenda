@@ -1,3 +1,5 @@
+'use strict';
+
 const jwt = require('jsonwebtoken');
 const dotenv = require('dotenv-safe').config();
 
@@ -8,13 +10,13 @@ module.exports.verifyJWT = (req, res, next) => {
   jwt.verify(token, process.env.SECRET, function(err, decoded) {
     if (err) return res.status(500).json({ auth: false, message: 'Falha ao autenticar token.' });
     // if it works, save decoded id on request for further use
-    req.userAuthId = decoded.id;
+    req.userAuth = decoded.user_data; // login, super, perm_add, perm_edit, perm_del
     next();
   });
 }
 
-module.exports.newJWT = (id) => {
-  return jwt.sign({id}, process.env.SECRET, {
-        expiresIn: 3000 // expires in 50min
+module.exports.newJWT = (user_data) => {
+  return jwt.sign({user_data}, process.env.SECRET, {
+        expiresIn: '1h'
       });
 }
