@@ -7,12 +7,11 @@ const statusMsg = require('../http/messages');
 class UserController {
 
   async addUser(req, res) {
-    if (req.userAuth.super==0) {
+    if (req.userAuth.super!=1) {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
 
-    // user is allowed to do this action
     const {login, pwd, isSuper, permissions} = req.body;
     const insertedId = await db.addUser({login, pwd, isSuper, permissions});
     if (insertedId==null) {// db error
@@ -23,7 +22,7 @@ class UserController {
   }
 
   async editUser(req, res) {
-    if (req.userAuth.super==0) {
+    if (req.userAuth.super!=1) {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
@@ -36,7 +35,7 @@ class UserController {
   }
 
   async delUser(req, res) {
-    if (req.userAuth.super==0) {
+    if (req.userAuth.super!=1) {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
@@ -51,7 +50,7 @@ class UserController {
   }
 
   async showUser(req, res) {
-    if (req.userAuth.super==0) {
+    if (req.userAuth.super!=1) {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
@@ -68,7 +67,7 @@ class UserController {
   }
 
   async showAllUsers(req, res) {
-    if (req.userAuth.super==0) {
+    if (req.userAuth.super!=1) {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }

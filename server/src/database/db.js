@@ -80,7 +80,7 @@ module.exports.delUser = async (user_id) => {
 }
 
 module.exports.showUser = async (user_id) => {
-  const sql = 'SELECT login, perm_add, perm_edit, perm_del FROM users WHERE id = ?';
+  const sql = 'SELECT login, name, perm_add, perm_edit, perm_del FROM users WHERE id = ?';
   const values = [user_id];
   try {
     const [rows] = await promisePool.execute(sql, values);
@@ -95,7 +95,62 @@ module.exports.showUser = async (user_id) => {
 }
 
 module.exports.showAllUsersExceptSuper = async () => {
-  const sql = 'SELECT id, login FROM users WHERE super<>1 ORDER BY login';
+  const sql = 'SELECT id, login, name FROM users WHERE super<>1 ORDER BY login';
+  try {
+    const [rows] = await promisePool.execute(sql);
+    return rows;
+  } catch (e) {
+    return null;
+  }
+}
+
+module.exports.addContact = async (cont_data) => {
+  const sql = 'INSERT INTO contacts (name, address, fones, emails, notes) VALUES (?,?,?,?,?)';
+  const values = [cont_data.name, cont_data.address, cont_data.fones, cont_data.emails, cont_data.notes];
+  try {
+    const [rows] = await promisePool.execute(sql, values);
+    return rows.insertId;
+  } catch (e) {
+    return null;
+  }
+}
+
+module.exports.editContact = async (cont_id, cont_data) => {
+  /* TO-DO
+  const sql = 'UPDATE contact SET ? WHERE ?';
+  const values = [];
+  const [rows] = await promisePool.execute(sql, values);
+  */
+}
+
+module.exports.delContact = async (cont_id) => {
+  const sql = 'DELETE FROM contacts WHERE id = ?';
+  const values = [cont_id];
+  try {
+    const [rows] = await promisePool.execute(sql, values);
+    return rows.affectedRows;
+  } catch (e) {
+    return null;
+  }
+}
+
+module.exports.showContact = async (cont_id) => {
+  const sql = 'SELECT * FROM contacts WHERE id = ?';
+  const values = [cont_id];
+  try {
+    const [rows] = await promisePool.execute(sql, values);
+    if (rows.length>0) {
+      return rows[0];
+    } else { // contact not found
+      return 0;
+    }
+  } catch (e) {
+    return null;
+  }
+}
+
+module.exports.showSelectedContacts = async () => {
+  const sql = 'SELECT * FROM contacts ORDER BY name LIMIT 10';
   try {
     const [rows] = await promisePool.execute(sql);
     return rows;
