@@ -2,7 +2,7 @@ const mysql = require('mysql2');
 const dotenv = require('dotenv-safe').config();
 const bcrypt = require('bcrypt');
 
-let db_config = {
+let dbConfig = {
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
   user: process.env.DB_USER,
@@ -11,12 +11,12 @@ let db_config = {
   connectionLimit : process.env.DB_CONNLIMIT
 };
 
-const pool = mysql.createPool(db_config);
+const pool = mysql.createPool(dbConfig);
 const promisePool = pool.promise();
 
-module.exports.checkSuper = async (user_id) => {
+module.exports.checkSuper = async (userId) => {
   const sql = 'SELECT super FROM users WHERE id=?';
-  const values = [user_id];
+  const values = [userId];
   try {
     const [rows] = await promisePool.execute(sql, values);
     if (rows.length>0) {
@@ -28,13 +28,13 @@ module.exports.checkSuper = async (user_id) => {
   }
 }
 
-module.exports.checkLogin = async (user_data) => {
+module.exports.checkLogin = async (userData) => {
   const sql = 'SELECT * FROM users WHERE login=?';
-  const values = [user_data.login];
+  const values = [userData.login];
   try {
     const [rows] = await promisePool.execute(sql, values);
     if (rows.length>0) {
-      pwdMatches = bcrypt.compareSync(user_data.pwd, rows[0].pwd);
+      pwdMatches = bcrypt.compareSync(userData.pwd, rows[0].pwd);
       if (pwdMatches) {
         return rows[0];
       } else {
@@ -47,11 +47,11 @@ module.exports.checkLogin = async (user_data) => {
   }
 }
 
-module.exports.addUser = async (user_data) => {
+module.exports.addUser = async (userData) => {
   const salt = bcrypt.genSaltSync(10);
-  const pwdCript = bcrypt.hashSync(user_data.pwd, salt);
+  const pwdCript = bcrypt.hashSync(userData.pwd, salt);
   const sql = 'INSERT INTO users (login, pwd, super, perm_add, perm_edit, perm_del) VALUES (?,?,?,?,?,?)';
-  const values = [user_data.login, pwdCript, user_data.isSuper, user_data.permissions.add, user_data.permissions.edit, user_data.permissions.del];
+  const values = [userData.login, pwdCript, userData.isSuper, userData.permissions.add, userData.permissions.edit, userData.permissions.del];
   try {
     const [rows] = await promisePool.execute(sql, values);
     return rows.insertId;
@@ -60,17 +60,22 @@ module.exports.addUser = async (user_data) => {
   }
 }
 
-module.exports.editUser = async (user_id, user_data) => {
-  /* TO-DO
-  const sql = 'UPDATE users SET login=?, pwd=?, perm_add=?, perm_edit=?, perm_del=? WHERE id=?';
-  const values = [user_data.login, user_data.pwdCript, user_data.permissions.add, user_data.permissions.edit, user_data.permissions.del];
-  const [rows] = await promisePool.execute(sql, values);
-  */
+module.exports.editUser = async (userId, userData) => {
+  const sql = 'UPDATE users SET ? WHERE id = ?';
+  const values = [userData, userId];
+  console.log(values);
+  try {
+    const [rows] = await promisePool.query(sql, values);
+    return rows.affectedRows;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 }
 
-module.exports.delUser = async (user_id) => {
+module.exports.delUser = async (userId) => {
   const sql = 'DELETE FROM users WHERE id = ?';
-  const values = [user_id];
+  const values = [userId];
   try {
     const [rows] = await promisePool.execute(sql, values);
     return rows.affectedRows;
@@ -79,9 +84,9 @@ module.exports.delUser = async (user_id) => {
   }
 }
 
-module.exports.showUser = async (user_id) => {
+module.exports.showUser = async (userId) => {
   const sql = 'SELECT login, name, perm_add, perm_edit, perm_del FROM users WHERE id = ?';
-  const values = [user_id];
+  const values = [userId];
   try {
     const [rows] = await promisePool.execute(sql, values);
     if (rows.length>0) {
@@ -104,9 +109,9 @@ module.exports.showAllUsersExceptSuper = async () => {
   }
 }
 
-module.exports.addContact = async (cont_data) => {
+module.exports.addContact = async (contData) => {
   const sql = 'INSERT INTO contacts (name, address, fones, emails, notes) VALUES (?,?,?,?,?)';
-  const values = [cont_data.name, cont_data.address, cont_data.fones, cont_data.emails, cont_data.notes];
+  const values = [contData.name, contData.address, contData.fones, contData.emails, contData.notes];
   try {
     const [rows] = await promisePool.execute(sql, values);
     return rows.insertId;
@@ -115,17 +120,22 @@ module.exports.addContact = async (cont_data) => {
   }
 }
 
-module.exports.editContact = async (cont_id, cont_data) => {
-  /* TO-DO
-  const sql = 'UPDATE contact SET ? WHERE ?';
-  const values = [];
-  const [rows] = await promisePool.execute(sql, values);
-  */
+module.exports.editContact = async (contId, contData) => {
+  const sql = 'UPDATE contacts SET ? WHERE id = ?';
+  const values = [contData, contId];
+  console.log(values);
+  try {
+    const [rows] = await promisePool.query(sql, values);
+    return rows.affectedRows;
+  } catch (e) {
+    console.log(e);
+    return null;
+  }
 }
 
-module.exports.delContact = async (cont_id) => {
+module.exports.delContact = async (contId) => {
   const sql = 'DELETE FROM contacts WHERE id = ?';
-  const values = [cont_id];
+  const values = [contId];
   try {
     const [rows] = await promisePool.execute(sql, values);
     return rows.affectedRows;
@@ -134,9 +144,9 @@ module.exports.delContact = async (cont_id) => {
   }
 }
 
-module.exports.showContact = async (cont_id) => {
+module.exports.showContact = async (contId) => {
   const sql = 'SELECT * FROM contacts WHERE id = ?';
-  const values = [cont_id];
+  const values = [contId];
   try {
     const [rows] = await promisePool.execute(sql, values);
     if (rows.length>0) {
@@ -149,8 +159,8 @@ module.exports.showContact = async (cont_id) => {
   }
 }
 
-module.exports.showSelectedContacts = async () => {
-  const sql = 'SELECT * FROM contacts ORDER BY name LIMIT 10';
+module.exports.showSelectedContacts = async (searchName) => {
+  const sql = `SELECT * FROM contacts WHERE name LIKE \'%${searchName}%\' ORDER BY name`;
   try {
     const [rows] = await promisePool.execute(sql);
     return rows;

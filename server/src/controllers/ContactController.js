@@ -26,12 +26,15 @@ class ContactController {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
-    /* TO-DO
-    
+
     const id = req.params.id;
-    await db.editContact(id);
-    res.json({message: `updated`});
-    */
+    const contNewData = req.body;
+    const affectedRows = await db.editContact(id, contNewData);
+    if (affectedRows==null) { // db error
+      res.status(500).json({message: statusMsg.msgDbError});
+    } else { // user was updated
+      res.status(200).json();
+    }
   }
 
   async delContact(req, res) {
@@ -72,7 +75,11 @@ class ContactController {
       return;
     }
 
-    const contacts = await db.showSelectedContacts();
+    const searchName = req.query.name;
+    if (searchName==null) { //req incompleta
+      res.status(400).json({message: statusMsg.msgBadRequest});
+    }
+    const contacts = await db.showSelectedContacts(searchName);
     if (contacts==null) { // db error
       res.status(500).json({message: statusMsg.msgDbError});
     } else {

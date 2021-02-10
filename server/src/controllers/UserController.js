@@ -26,12 +26,15 @@ class UserController {
       res.status(403).json({message: statusMsg.msgForbidden});
       return;
     }
-    /* TO-DO
-    
+
     const id = req.params.id;
-    await db.editUser(id);
-    res.json({message: `updated`});
-    */
+    const userNewData = req.body;
+    const affectedRows = await db.editUser(id, userNewData);
+    if (affectedRows==null) { // db error
+      res.status(500).json({message: statusMsg.msgDbError});
+    } else { // user was updated
+      res.status(200).json();
+    }
   }
 
   async delUser(req, res) {
