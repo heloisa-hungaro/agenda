@@ -29,7 +29,7 @@ module.exports.checkSuper = async (userId) => {
 }
 
 module.exports.checkLogin = async (userData) => {
-  const sql = 'SELECT * FROM users WHERE login=?';
+  const sql = 'SELECT id, name, pwd, super, perm_add, perm_edit, perm_del FROM users WHERE login=?';
   const values = [userData.login];
   try {
     const [rows] = await promisePool.execute(sql, values);

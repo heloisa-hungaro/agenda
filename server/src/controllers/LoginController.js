@@ -12,14 +12,15 @@ class LoginController {
     const userData = await db.checkLogin({login, pwd});
     if (userData==null) { // db error
       res.status(500).json({message: statusMsg.msgDbError});
-    } else if (userData==0) { // login doesn't exists or pwd is wrong
+    } else if (userData==0) { // login doesn't exist or pwd is wrong
       res.status(401).json({message: statusMsg.msgUnauthorizedLogin});
     } else { // login exists and pwd is correct
       // generates auth token for this user
       delete userData.pwd;
-      delete userData.id;
+      const userName = userData.name;
+      delete userData.name;
       const token = auth.newJWT(userData);
-      res.status(200).json({ auth: true, token: token });
+      res.status(200).json({ name: userName, token: token });
     }
   }
 
