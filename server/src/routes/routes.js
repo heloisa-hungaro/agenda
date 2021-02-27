@@ -9,7 +9,7 @@ const ContactController = require('../controllers/ContactController');
 
 const corsOptions = {
   origin: 'http://localhost:8080',
-  methods: 'GET, POST, PUT, DELETE',
+  methods: 'GET, POST, PATCH, DELETE',
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 }; 
 
@@ -18,9 +18,9 @@ const router = express.Router();
 //for cors preflight
 router.options('*', cors(corsOptions));
 
-//login and logout
+//login
 router.post('/login', cors(corsOptions), LoginController.logIn);
-router.post('/logout', cors(corsOptions), LoginController.logOut);
+//router.post('/logout', cors(corsOptions), LoginController.logOut);
 
 //users
 router.get('/users', cors(corsOptions), auth.verifyJWT, UserController.showAllUsers);

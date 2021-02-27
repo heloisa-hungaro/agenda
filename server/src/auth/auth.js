@@ -10,13 +10,13 @@ module.exports.verifyJWT = (req, res, next) => {
   jwt.verify(token, process.env.SECRET, function(err, decoded) {
     if (err) return res.status(500).json({ message: 'Falha ao autenticar token.' });
     // if it works, save decoded id on request for further use
-    req.userAuth = decoded.userData; // id, super, perm_add, perm_edit, perm_del
+    req.userAuth = decoded.userData; // id, super
     next();
   });
 }
 
 module.exports.newJWT = (userData) => {
   return jwt.sign({userData}, process.env.SECRET, {
-        expiresIn: '1h'
+        expiresIn: '5h'
       });
 }

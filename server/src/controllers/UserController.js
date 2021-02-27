@@ -12,12 +12,14 @@ class UserController {
       return;
     }
 
-    const {login, pwd, isSuper, permissions} = req.body;
-    const insertedId = await db.addUser({login, pwd, isSuper, permissions});
+    const {name, login, pwd, permissions} = req.body;
+    const insertedId = await db.addUser({name, login, pwd, permissions});
     if (insertedId==null) {// db error
       res.status(500).json({message: statusMsg.msgDbError});
+    } else if (insertedId==0) {// user already exists
+      res.status(409).json({message: statusMsg.msgConflictUser});
     } else {
-    res.status(201).json({newUserId: insertedId});
+    res.status(201).json({newUserId: insertedId, message: statusMsg.msgSuccessAdd});
     }
   }
 
@@ -33,7 +35,7 @@ class UserController {
     if (affectedRows==null) { // db error
       res.status(500).json({message: statusMsg.msgDbError});
     } else { // user was updated
-      res.status(200).json();
+      res.status(200).json({message: statusMsg.msgSuccessEdit});
     }
   }
 
@@ -48,7 +50,7 @@ class UserController {
     if (affectedRows==null) { // db error
       res.status(500).json({message: statusMsg.msgDbError});
     } else { // user was deleted by this action or by any other means! the source doesn't matter
-      res.status(200).json();
+      res.status(200).json({message: statusMsg.msgSuccessDel});
     }
   }
 

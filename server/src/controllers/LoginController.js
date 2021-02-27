@@ -19,15 +19,16 @@ class LoginController {
       delete userData.pwd;
       const userName = userData.name;
       delete userData.name;
-      const token = auth.newJWT(userData);
+      const token = auth.newJWT(userData); // id, super
       res.status(200).json({ name: userName, token: token });
     }
   }
-
-  async logOut(req, res) {
+/*
+  async logOut(req, res) { // precisa informar o server?
     // destroy auth token for this user
-    res.status(200).json({ auth: false, token: null });
+    res.status(200).json({ token: null });
   }
+*/
 }
 
 module.exports = new LoginController();
