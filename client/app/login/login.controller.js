@@ -3,13 +3,11 @@
 angular
 .module('agenda')
   .controller('Login', function($scope, $rootScope, $location, AuthService) {
-    $scope.user = "helo"; 
+    $scope.user = "admin"; 
     $scope.pwd = "123";
-    $rootScope.isLogged = AuthService.isLogged;
-    $rootScope.userLogged = AuthService.userLogged;
 
     $scope.submitLogin = () => { 
-      AuthService.Login($scope.user, $scope.pwd).then (function(result) {
+      AuthService.login($scope.user, $scope.pwd).then (function(result) {
         $rootScope.userLogged = result;
         $rootScope.isLogged = true;
         if ($rootScope.userLogged == 'Administrador') {

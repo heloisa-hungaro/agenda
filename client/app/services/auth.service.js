@@ -4,7 +4,7 @@ angular
       function ($http, $window, $q) {
         var service = {};
 
-        service.Login = function Login(user, pwd) {
+        service.login = function login(user, pwd) {
           var deferred = $q.defer();
           var onSuccess = function (response) {
             // window.alert(JSON.stringify(response.data));
@@ -26,12 +26,15 @@ angular
           return deferred.promise;
         };
 
-        service.Logout = function Logout() {
+        service.logout = function logout() {
+          var deferred = $q.defer();
           // remove user from storage and clear http auth header
           sessionStorage.removeItem("name");
           sessionStorage.removeItem("token");
 
           $http.defaults.headers.common = '';
+          deferred.resolve();
+          return deferred.promise;
         };
 
         service.isLogged = (sessionStorage.getItem("name") !== null);

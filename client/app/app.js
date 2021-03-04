@@ -25,8 +25,9 @@ angular
       }])
     .run(['$rootScope', function($rootScope) {
       $rootScope.isLogged = false;
+      $rootScope.userLogged = null;
       $rootScope.companyName = "Empresa";
       $rootScope.version = "1.0";
       $rootScope.yearNow = new Date();   
-      $rootScope.devName = "Heloisa Hungaro";        
+      $rootScope.devName = "Heloisa Hungaro"; 
     }]);
