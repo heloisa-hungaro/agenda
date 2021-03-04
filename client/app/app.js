@@ -11,11 +11,22 @@ angular
             templateUrl : './login/login.html',
             controller : 'Login'
           })
-          .when('/x', {
-            templateUrl : 'x.html'
+          .when('/users', {
+            templateUrl : './users/users.html',
+            controller : 'Users'
           })
-          .when('/', {
+          .when('/contacts', {
+            templateUrl : './contacts/contacts.html',
+            controller : 'Contacts'
+          })
+          .otherwise({
             redirectTo: '/login'
-          })
-          .otherwise({template: 'Página não encontrada.'})
-      }]);
+          });
+      }])
+    .run(['$rootScope', function($rootScope) {
+      $rootScope.isLogged = false;
+      $rootScope.companyName = "Empresa";
+      $rootScope.version = "1.0";
+      $rootScope.yearNow = new Date();   
+      $rootScope.devName = "Heloisa Hungaro";        
+    }]);
