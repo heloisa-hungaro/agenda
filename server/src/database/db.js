@@ -137,7 +137,7 @@ module.exports.showUser = async (userId) => {
 }
 
 module.exports.showAllUsersExceptSuper = async () => {
-  const sql = 'SELECT id, login, name FROM users WHERE super<>1 ORDER BY login';
+  const sql = 'SELECT name, login, perm_add, perm_edit, perm_del  FROM users WHERE super<>1 ORDER BY login';
   try {
     const [rows] = await promisePool.execute(sql);
     return rows;
