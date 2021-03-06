@@ -5,12 +5,14 @@ angular
   .controller('Login', function($scope, $rootScope, $location, AuthService) {
     $scope.user = "admin"; 
     $scope.pwd = "123";
+    $rootScope.userLogged = null;
+    $rootScope.isLogged = false;
 
     $scope.submitLogin = () => { 
       AuthService.login($scope.user, $scope.pwd).then (function(result) {
         $rootScope.userLogged = result;
         $rootScope.isLogged = true;
-        if ($rootScope.userLogged == 'Administrador') {
+        if ($rootScope.userLogged.toUpperCase() == 'ADMINISTRADOR') {
           $location.path('/users');
         } else {
           $location.path('/contacts');

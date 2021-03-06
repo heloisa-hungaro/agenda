@@ -21,25 +21,6 @@ header {
   height: 60px;
 }
 
-header .button {
-  float: left;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-header .button {
-  background-color: #1a6ec5;
-  color: white;
-}
-
-header .button:hover {
-  background-color: #667d96;
-  color: white;
-  cursor: pointer;
-}
-
 .header-right {
   float: right;
   position: relative;
@@ -69,11 +50,48 @@ footer {
   background-color: #1d346c;
   color: white;
   text-align: center;
+  font-size: 16px;
 }
 
-.login-box {
+header .button {
+  float: left;
+}
+
+.small-button {
+  background-color: #1a6ec5;
+  color: white;
+  text-align: center;
+  padding: 2px;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 24px;
+  margin: auto;
+}
+
+.small-button:hover {
+  background-color: #667d96;
+  color: white;
+  cursor: pointer;
+}
+
+.button {
+  background-color: #1a6ec5;
+  color: white;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
+  border-radius: 4px;
+  width: 80px;
+}
+
+.button:hover {
+  background-color: #667d96;
+  color: white;
+  cursor: pointer;
+}
+
+.box {
   margin: 100px auto;
-  width: 300px;
   padding: 20px;
   text-align: center;
   border: 1px solid #1d346c;
@@ -81,21 +99,49 @@ footer {
   font-size: 14px;
 }
 
-.login-box h1 {
+.box.login {
+  width: 300px;
+}
+
+.login .button {
+  margin: auto;
+}
+
+.box.users {
+  width: 580px;
+}
+
+table {
+  width: 540px;
+  border-collapse: collapse;
+}
+
+th, td {
+  border: 1px solid black;
+}
+
+table img {
+  width: 12px;
+  height: 12px;
+}
+
+h1 {
   font-size: 20px;
   margin: 0;
   padding: 0 10px 20px 10px;
   color: #1d346c;
 }
 
-input {
-  margin: 10px;
+.users h1 {
+  padding: 0 90px 20px 10px;
 }
 
-input[type=button], input[type=submit], input[type=reset] {
-  width: 100px;
-  height: 30px;
-  font-size: 14px;
+.btn-cell {
+  width: 40px;
+}
+
+input {
+  margin: 10px;
 }
 
 /* Extra small devices (phones, 600px and down) */

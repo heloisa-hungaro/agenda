@@ -10,7 +10,6 @@ angular
     } else {
       UsersService.getAllUsers().then (function(result) {
         $scope.allUsers = result;
-       // alert(result);
       }, function(error){
         //If an error happened, handle it here
         alert(error);
