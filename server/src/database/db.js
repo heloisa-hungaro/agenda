@@ -122,7 +122,7 @@ module.exports.delUser = async (userId) => {
 }
 
 module.exports.showUser = async (userId) => {
-  const sql = 'SELECT name, login, perm_add, perm_edit, perm_del FROM users WHERE id = ?';
+  const sql = 'SELECT id, name, login, perm_add, perm_edit, perm_del FROM users WHERE id = ?';
   const values = [userId];
   try {
     const [rows] = await promisePool.execute(sql, values);
@@ -137,7 +137,7 @@ module.exports.showUser = async (userId) => {
 }
 
 module.exports.showAllUsersExceptSuper = async () => {
-  const sql = 'SELECT name, login, perm_add, perm_edit, perm_del  FROM users WHERE super<>1 ORDER BY login';
+  const sql = 'SELECT id, name, login, perm_add, perm_edit, perm_del  FROM users WHERE super<>1 ORDER BY login';
   try {
     const [rows] = await promisePool.execute(sql);
     return rows;
