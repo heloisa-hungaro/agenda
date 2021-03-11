@@ -21,12 +21,16 @@ header {
   height: 60px;
 }
 
-.header-right {
+header .button {
+  float: left;
+}
+
+header .header-right {
   float: right;
   position: relative;
 }
 
-#username {
+header #username {
   float: left;
   text-align: center;
   padding: 10px;
@@ -34,7 +38,7 @@ header {
   border-radius: 4px;
 }
 
-#appname {
+header #appname {
   padding: 10px;
   width: 100%;
   left: 0;
@@ -53,25 +57,71 @@ footer {
   font-size: 16px;
 }
 
-header .button {
-  float: left;
+.list table {
+  width: 540px;
+  border-collapse: collapse;
 }
 
-.small-button {
+.list table .btn-cell {
+  width: 40px;
+}
+
+.list table th, .list table td {
+  border: 1px solid black;
+}
+
+.list table th img, .list table td img {
+  vertical-align: middle;
+}
+
+.list table .perm {
+  font-size: 12px;
+}
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0 10px 20px 10px;
+  color: #1d346c;
+}
+
+input {
+  margin: 10px;
+}
+
+.icon-button, .icon-button-update {
   background-color: #1a6ec5;
   color: white;
-  text-align: center;
-  padding: 2px;
   text-decoration: none;
   border-radius: 4px;
+  padding: 2px;
   width: 24px;
+  height: 20px;
+  position: relative;
   margin: auto;
 }
 
-.small-button:hover {
+.icon-button img, .icon-button-update img {
+  max-height: 60%;
+  max-width: 60%;
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+}
+
+.icon-button:hover, .icon-button-update:hover {
   background-color: #667d96;
   color: white;
   cursor: pointer;
+}
+
+.icon-button-update {
+  float: left;
 }
 
 .button {
@@ -90,7 +140,7 @@ header .button {
   cursor: pointer;
 }
 
-.box {
+.box, .login, .users {
   margin: 100px auto;
   padding: 20px;
   text-align: center;
@@ -99,7 +149,7 @@ header .button {
   font-size: 14px;
 }
 
-.box.login {
+.login {
   width: 300px;
 }
 
@@ -107,41 +157,24 @@ header .button {
   margin: auto;
 }
 
-.box.users {
+.users {
   width: 580px;
 }
 
-table {
-  width: 540px;
-  border-collapse: collapse;
+.edit-users table {
+  width: 90px;
+  margin: 10px auto;
+  text-align: left;
 }
 
-th, td {
-  border: 1px solid black;
+input[type=checkbox] {
+  margin: 0px;
 }
 
-table img {
-  width: 12px;
-  height: 12px;
-}
-
-h1 {
-  font-size: 20px;
-  margin: 0;
-  padding: 0 10px 20px 10px;
-  color: #1d346c;
-}
-
-.users h1 {
-  padding: 0 90px 20px 10px;
-}
-
-.btn-cell {
-  width: 40px;
-}
-
-input {
-  margin: 10px;
+button, input[type="submit"], input[type="reset"] {
+  border: none;
+  font: inherit;
+  outline: inherit;
 }
 
 /* Extra small devices (phones, 600px and down) */

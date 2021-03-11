@@ -1,53 +1,101 @@
-<div class="box users">
-  <h1>Usuários</h1>
-  <table>
-    <tr>
-      <th colspan="5">
-        <div class="small-button" ng-click="">
-          <img alt="+" src="../../images/icons/add-white-16.png">
-        </div>
-      </th>
-    </tr>
-    <tr>
-      <th colspan="2"></th>
-      <th colspan="3">Permissões</th>
-    </tr>
-    <tr>
-      <th>Nome</th>
-      <th>Login</th>
-      <th>Adicionar</th>
-      <th>Editar</th>
-      <th>Deletar</th>
-    </tr>
-    <tr>
-      <th>Nome</th>
-      <th>Login</th>
-      <th>Adicionar</th>
-      <th>Editar</th>
-      <th>Deletar</th>
-    </tr>
-    <tr ng-repeat="x in allUsers">
-      <td>{{ x.name }}</td>
-      <td>{{ x.login }}</td>
-      <td>
-        <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_add"></img>
-      </td>
-      <td>
-        <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_edit"></img>
-      </td>
-      <td>
-        <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_del"></img>
-      </td>
-      <td class="btn-cell">
-        <div class="small-button" ng-click="">
-          <img alt="&" src="../../images/icons/edit-white-16.png">
-        </div>
-      </td>
-      <td class="btn-cell">
-        <div class="small-button" ng-click="">
-          <img alt="X" src="../../images/icons/delete-white-16.png">
-        </div>
-      </td>
-    </tr>
-  </table>
+<div class="users">
+  <div class="icon-button-update" title="Atualizar Lista de Usuários" ng-click="reloadUsers()" ng-hide="editMode">
+    <img alt="+" src="../../images/icons/reload-white-16.png">
+  </div>
+  <h1>{{header}}</h1>
+  <!-- list users -->
+  <div class="list" ng-hide="editMode"> 
+    <table>
+      <tr>
+        <th colspan="7">
+          <div class="icon-button" title="Adicionar Usuário" ng-click="gotoEditMode('add', null)">
+            <img alt="+" src="../../images/icons/add-white-16.png">
+          </div>
+        </th>
+      </tr>
+      <tr>
+        <th colspan="3"></th>
+        <th colspan="3">Permissões</th>
+        <th></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th>Nome</th>
+        <th>Login</th>
+        <th class="perm">Adicionar</th>
+        <th class="perm">Editar</th>
+        <th class="perm">Remover</th>
+        <th></th>
+      </tr>
+      <tr ng-repeat="x in allUsers">
+        <td class="btn-cell">
+          <div class="icon-button" title="Editar Usuário ({{x.login}})" ng-click="gotoEditMode('edit', $index)">
+            <img alt="&" src="../../images/icons/edit-white-16.png">
+          </div>
+        </td>
+        <td>{{ x.name }}</td>
+        <td>{{ x.login }}</td>
+        <td>
+          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_add"></img>
+        </td>
+        <td>
+          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_edit"></img>
+        </td>
+        <td>
+          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_del"></img>
+        </td>
+        <td class="btn-cell">
+          <div class="icon-button" title="Remover Usuário ({{x.login}})" ng-click="delUser($index)">
+            <img alt="X" src="../../images/icons/delete-white-16.png">
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- add/edit user -->
+  <div class="edit-users" ng-show="editMode">
+    <form ng-submit="modifyUser()">
+      <label for="name">Nome:</label></br><input type="text" maxlength="25" required ng-model="userData.name" auto-focus> <br />
+      <label for="login">Login:</label></br><input type="text" maxlength="20" required ng-model="userData.login"> <br />
+      <div ng-show="editType=='add'">
+        <label for="pwd">Senha:</label></br><input type="password" maxlength="20" ng-required="editType=='add'" ng-model="userData.pwd"> <br />
+      </div>
+      Permissões: <br />
+      <table>
+        <tr>
+          <td>
+            <input type="checkbox" name="perm_add" ng-true-value="1" ng-false-value="0" ng-model="userData.perm_add">
+            <label for="perm_add">Adicionar</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" name="perm_edit" ng-true-value="1" ng-false-value="0" ng-model="userData.perm_edit">
+            <label for="perm_edit">Editar</label>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <input type="checkbox" name="perm_del" ng-true-value="1" ng-false-value="0" ng-model="userData.perm_del">
+            <label for="perm_del">Remover</label>
+          </td>
+        </tr>
+      </table>
+      <table>
+        <tr>
+          <td>
+            <button type="submit" class="icon-button" title="Salvar">
+              <img alt="X" src="../../images/icons/checked-white-16.png">
+            </button>
+          </td>
+          <td>
+            <div class="icon-button" title="Cancelar" ng-click="reloadUsers()">
+              <img alt="X" src="../../images/icons/delete-white-16.png">
+            </div>
+          </td>
+        </tr>
+      </table>
+    </form>
+  </div>
 </div>

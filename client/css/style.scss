@@ -1,10 +1,9 @@
 $font-family: Verdana, Helvetica, sans-serif;
 $font-size: 14px;
-$font-size-header-footer: 16px;
 $primary-color: rgb(29, 52, 108);
 $secondary-color: rgb(255, 255, 255);
 $button-color: rgb(26, 110, 197); 
-$button-color-hover:  rgb(102, 125, 150); 
+$button-color-hover:  rgb(102, 125, 150);
 
 * {
   box-sizing: border-box;
@@ -20,34 +19,35 @@ header {
   background-color: $primary-color;
   color: $secondary-color;
   padding: 10px 20px;
-  font-size: $font-size-header-footer; 
+  font-size: $font-size + 2px; 
   position: fixed;
   left: 0;
   top: 0;
   width: 100%;
   height: 60px;
-}
+  .button {
+    float: left;
+  }
+  .header-right {
+    float: right;
+    position: relative;
+  }
 
+  #username { 
+    float: left;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
 
-.header-right {
-  float: right;
-  position: relative;
-}
-
-#username {
-  float: left;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-  border-radius: 4px;
-}
-
-#appname {
-  padding: 10px;
-  width: 100%;
-  left:0;
-  right:0;
-  text-align: center;
+  #appname {
+    padding: 10px;
+    width: 100%;
+    left:0;
+    right:0;
+    text-align: center;
+  }
 }
 
 footer {
@@ -58,28 +58,74 @@ footer {
   background-color: $primary-color;
   color: $secondary-color;
   text-align: center;
-  font-size: $font-size-header-footer; 
+  font-size: $font-size + 2px; 
 }
 
-header .button {
-  float: left;
+.list{
+  table {
+    width: 540px;
+    border-collapse: collapse;
+    .btn-cell {
+      width: 40px;
+    }
+    th, td {
+      border: 1px solid black;
+      img {
+        vertical-align: middle;
+      }
+    }
+    .perm {
+      font-size: $font-size - 2px;
+    }
+  }
 }
 
-.small-button {
+
+
+h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0 10px 20px 10px;
+  color: $primary-color;
+}
+
+input {
+  margin: 10px;
+}
+
+.icon-button {
   background-color: $button-color;
   color: $secondary-color;
-  text-align: center;
-  padding: 2px;
   text-decoration: none;
   border-radius: 4px;
+  padding: 2px;
   width: 24px;
+  height: 20px;
+  position: relative;
   margin: auto;
+  img { // icons center aligned with upper div position relative
+    max-height: 60%;
+    max-width: 60%;
+    width: auto;
+    height: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+  }
 }
 
-.small-button:hover {
+.icon-button:hover {
   background-color: $button-color-hover;
   color: $secondary-color;
   cursor: pointer;
+}
+
+.icon-button-update {
+  @extend .icon-button;
+  float: left;
 }
 
 .button {
@@ -107,48 +153,38 @@ header .button {
   font-size: $font-size;
 }
 
-.box.login {
+.login {
+  @extend .box;
   width: 300px;
+  .button {
+    margin: auto;
+  }
 }
 
-.login .button {
-  margin: auto;
-}
-
-.box.users {
+.users {
+  @extend .box;
   width: 580px;
+  // h1 {
+    //   padding: 0 90px 20px 10px;
+    // }
 }
 
-table {
-  width: 540px;
-  border-collapse: collapse;
+.edit-users{
+  table{
+    width: 90px;
+    margin: 10px auto;
+    text-align: left;
+  }
 }
 
-th, td {
-  border: 1px solid black;
+input[type=checkbox] {
+  margin: 0px;
 }
 
-table img {
-  width: 12px;
-  height: 12px;
-}
-
-h1 {
-  font-size: 20px;
-  margin: 0;
-  padding: 0 10px 20px 10px;
-  color: $primary-color;
-}
-
-.users h1 {
-  padding: 0 90px 20px 10px;
-}
-
-.btn-cell {
-  width: 40px;
-}
-input {
-  margin: 10px;
+button, input[type="submit"], input[type="reset"] {
+	border: none;
+	font: inherit;
+	outline: inherit;
 }
 
 

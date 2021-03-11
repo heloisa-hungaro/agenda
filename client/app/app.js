@@ -15,6 +15,10 @@ angular
             templateUrl : './users/users.html',
             controller : 'Users'
           })
+          .when('/users/add', {
+            templateUrl : './users/add.html',
+            controller : 'AddUser'
+          })
           .when('/contacts', {
             templateUrl : './contacts/contacts.html',
             controller : 'Contacts'

@@ -1,8 +1,8 @@
-<div class="box login">
+<div class="login">
   <form ng-submit="submitLogin()">
     <h1>Login</h1>
     <label for="user">Usuário:</label></br><input type="text" id="user" maxlength="20" required ng-model="user" auto-focus> <br />
     <label for="pwd">Senha:</label></br><input type="password" id="pwd" maxlength="20" required ng-model="pwd"> <br />
-    <div class="button" ng-click="submitLogin()">Entrar</div>
+    <input type="submit" class="button" value="Entrar">
   </form>
 </div>
