@@ -8,6 +8,7 @@ angular
     $scope.editMode = false;
     $scope.editType = '';
     $scope.userData = {};
+    $scope.hoveredIndex = -1;
     
 
     $scope.reloadUsers = () => {

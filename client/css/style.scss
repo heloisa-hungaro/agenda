@@ -4,6 +4,7 @@ $primary-color: rgb(29, 52, 108);
 $secondary-color: rgb(255, 255, 255);
 $button-color: rgb(26, 110, 197); 
 $button-color-hover:  rgb(102, 125, 150);
+$button-width: 26px; 
 
 * {
   box-sizing: border-box;
@@ -13,74 +14,6 @@ body {
   margin: 0;
   font: 100% $font-family;
 }
-
-header {
-  overflow: hidden;
-  background-color: $primary-color;
-  color: $secondary-color;
-  padding: 10px 20px;
-  font-size: $font-size + 2px; 
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 60px;
-  .button {
-    float: left;
-  }
-  .header-right {
-    float: right;
-    position: relative;
-  }
-
-  #username { 
-    float: left;
-    text-align: center;
-    padding: 10px;
-    text-decoration: none;
-    border-radius: 4px;
-  }
-
-  #appname {
-    padding: 10px;
-    width: 100%;
-    left:0;
-    right:0;
-    text-align: center;
-  }
-}
-
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: $primary-color;
-  color: $secondary-color;
-  text-align: center;
-  font-size: $font-size + 2px; 
-}
-
-.list{
-  table {
-    width: 540px;
-    border-collapse: collapse;
-    .btn-cell {
-      width: 40px;
-    }
-    th, td {
-      border: 1px solid black;
-      img {
-        vertical-align: middle;
-      }
-    }
-    .perm {
-      font-size: $font-size - 2px;
-    }
-  }
-}
-
-
 
 h1 {
   font-size: 20px;
@@ -93,54 +26,114 @@ input {
   margin: 10px;
 }
 
-.icon-button {
+input[type=checkbox] {
+  margin: 0px;
+}
+
+button, input[type="submit"], input[type="reset"] {
+	border: none;
+	font: inherit;
+	outline: inherit;
+}
+
+%header-footer {
+  position: fixed;
+  left: 0;
+  width: 100%;
+  background-color: $primary-color;
+  color: $secondary-color;
+  text-align: center;
+  font-size: $font-size + 2px;   
+}
+
+footer {  
+  @extend %header-footer;
+  bottom: 0;
+}
+
+header {
+  @extend %header-footer;
+  overflow: hidden;
+  padding: 10px 20px;
+  top: 0;
+  height: 60px;
+  .button {
+    float: left;
+  }
+  .header-right {
+    float: right;
+    position: relative;
+  }
+  #username { 
+    float: left;
+    text-align: center;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  #appname {
+    padding: 10px;
+    width: 100%;
+    left:0;
+    right:0;
+    text-align: center;
+  }
+}
+
+.list{
+  table {
+    width: 540px;
+    border-collapse: collapse;
+    .btn-cell {
+      width: $button-width + 4px;
+    }
+    tr {
+      height: 22px;
+    }
+    th, td {
+      border: 0px solid black;
+      img {
+        vertical-align: middle;
+      }
+    }
+    .perm {
+      font-size: $font-size - 2px;
+    }
+  }
+}
+
+%button {
   background-color: $button-color;
   color: $secondary-color;
-  text-decoration: none;
   border-radius: 4px;
-  padding: 2px;
-  width: 24px;
-  height: 20px;
-  position: relative;
+}
+
+.icon-button {
+  @extend %button;
+  width: $button-width;
   margin: auto;
-  img { // icons center aligned with upper div position relative
-    max-height: 60%;
-    max-width: 60%;
-    width: auto;
-    height: auto;
-    position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    margin: auto;
-  }
 }
 
 .icon-button:hover {
   background-color: $button-color-hover;
-  color: $secondary-color;
   cursor: pointer;
 }
 
-.icon-button-update {
+.icon-button-refresh {
   @extend .icon-button;
   float: left;
 }
 
 .button {
-  background-color: $button-color;
-  color: $secondary-color;
+  @extend %button;
   text-align: center;
   padding: 10px;
   text-decoration: none;
-  border-radius: 4px;
   width: 80px;
 }
 
 .button:hover {
   background-color: $button-color-hover;
-  color: $secondary-color;
   cursor: pointer;
 }
 
@@ -160,7 +153,6 @@ input {
     margin: auto;
   }
 }
-
 .users {
   @extend .box;
   width: 580px;
@@ -175,16 +167,6 @@ input {
     margin: 10px auto;
     text-align: left;
   }
-}
-
-input[type=checkbox] {
-  margin: 0px;
-}
-
-button, input[type="submit"], input[type="reset"] {
-	border: none;
-	font: inherit;
-	outline: inherit;
 }
 
 

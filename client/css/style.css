@@ -8,16 +8,45 @@ body {
   font: 100% Verdana, Helvetica, sans-serif;
 }
 
-header {
-  overflow: hidden;
-  background-color: #1d346c;
-  color: white;
-  padding: 10px 20px;
-  font-size: 16px;
+h1 {
+  font-size: 20px;
+  margin: 0;
+  padding: 0 10px 20px 10px;
+  color: #1d346c;
+}
+
+input {
+  margin: 10px;
+}
+
+input[type=checkbox] {
+  margin: 0px;
+}
+
+button, input[type="submit"], input[type="reset"] {
+  border: none;
+  font: inherit;
+  outline: inherit;
+}
+
+footer, header {
   position: fixed;
   left: 0;
-  top: 0;
   width: 100%;
+  background-color: #1d346c;
+  color: white;
+  text-align: center;
+  font-size: 16px;
+}
+
+footer {
+  bottom: 0;
+}
+
+header {
+  overflow: hidden;
+  padding: 10px 20px;
+  top: 0;
   height: 60px;
 }
 
@@ -46,28 +75,21 @@ header #appname {
   text-align: center;
 }
 
-footer {
-  position: fixed;
-  left: 0;
-  bottom: 0;
-  width: 100%;
-  background-color: #1d346c;
-  color: white;
-  text-align: center;
-  font-size: 16px;
-}
-
 .list table {
   width: 540px;
   border-collapse: collapse;
 }
 
 .list table .btn-cell {
-  width: 40px;
+  width: 30px;
+}
+
+.list table tr {
+  height: 22px;
 }
 
 .list table th, .list table td {
-  border: 1px solid black;
+  border: 0px solid black;
 }
 
 .list table th img, .list table td img {
@@ -78,65 +100,35 @@ footer {
   font-size: 12px;
 }
 
-h1 {
-  font-size: 20px;
-  margin: 0;
-  padding: 0 10px 20px 10px;
-  color: #1d346c;
-}
-
-input {
-  margin: 10px;
-}
-
-.icon-button, .icon-button-update {
+.icon-button, .icon-button-refresh, .button {
   background-color: #1a6ec5;
   color: white;
-  text-decoration: none;
   border-radius: 4px;
-  padding: 2px;
-  width: 24px;
-  height: 20px;
-  position: relative;
+}
+
+.icon-button, .icon-button-refresh {
+  width: 26px;
   margin: auto;
 }
 
-.icon-button img, .icon-button-update img {
-  max-height: 60%;
-  max-width: 60%;
-  width: auto;
-  height: auto;
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  margin: auto;
-}
-
-.icon-button:hover, .icon-button-update:hover {
+.icon-button:hover, .icon-button-refresh:hover {
   background-color: #667d96;
-  color: white;
   cursor: pointer;
 }
 
-.icon-button-update {
+.icon-button-refresh {
   float: left;
 }
 
 .button {
-  background-color: #1a6ec5;
-  color: white;
   text-align: center;
   padding: 10px;
   text-decoration: none;
-  border-radius: 4px;
   width: 80px;
 }
 
 .button:hover {
   background-color: #667d96;
-  color: white;
   cursor: pointer;
 }
 
@@ -165,16 +157,6 @@ input {
   width: 90px;
   margin: 10px auto;
   text-align: left;
-}
-
-input[type=checkbox] {
-  margin: 0px;
-}
-
-button, input[type="submit"], input[type="reset"] {
-  border: none;
-  font: inherit;
-  outline: inherit;
 }
 
 /* Extra small devices (phones, 600px and down) */

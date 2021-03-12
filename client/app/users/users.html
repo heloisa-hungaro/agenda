@@ -1,16 +1,16 @@
 <div class="users">
-  <div class="icon-button-update" title="Atualizar Lista de Usuários" ng-click="reloadUsers()" ng-hide="editMode">
-    <img alt="+" src="../../images/icons/reload-white-16.png">
-  </div>
+  <button type="button" class="icon-button-refresh" title="Atualizar Lista de Usuários" ng-click="reloadUsers()">
+    <i class="fa fa-refresh"></i>
+  </button>
   <h1>{{header}}</h1>
   <!-- list users -->
   <div class="list" ng-hide="editMode"> 
     <table>
       <tr>
         <th colspan="7">
-          <div class="icon-button" title="Adicionar Usuário" ng-click="gotoEditMode('add', null)">
-            <img alt="+" src="../../images/icons/add-white-16.png">
-          </div>
+          <button type="button" class="icon-button" title="Adicionar Usuário" ng-click="gotoEditMode('add', null)">
+            <i class="fa fa-plus"></i>
+          </button>
         </th>
       </tr>
       <tr>
@@ -27,27 +27,27 @@
         <th class="perm">Remover</th>
         <th></th>
       </tr>
-      <tr ng-repeat="x in allUsers">
+      <tr ng-repeat="x in allUsers" ng-mouseenter="hoveredIndex = $index" ng-mouseleave="hoveredIndex = -1">
         <td class="btn-cell">
-          <div class="icon-button" title="Editar Usuário ({{x.login}})" ng-click="gotoEditMode('edit', $index)">
-            <img alt="&" src="../../images/icons/edit-white-16.png">
-          </div>
+          <button type="button" class="icon-button" title="Editar Usuário" ng-click="gotoEditMode('edit', $index)" ng-if="hoveredIndex == $index">
+            <i class="fa fa-pencil"></i>
+          </button>
         </td>
         <td>{{ x.name }}</td>
         <td>{{ x.login }}</td>
         <td>
-          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_add"></img>
+          <i class="fa fa-check" ng-show="x.perm_add"></i>
         </td>
         <td>
-          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_edit"></img>
+          <i class="fa fa-check" ng-show="x.perm_edit"></i>
         </td>
         <td>
-          <img src="../../images/icons/checked-16.png" alt="S" ng-show="x.perm_del"></img>
+          <i class="fa fa-check" ng-show="x.perm_del"></i>
         </td>
         <td class="btn-cell">
-          <div class="icon-button" title="Remover Usuário ({{x.login}})" ng-click="delUser($index)">
-            <img alt="X" src="../../images/icons/delete-white-16.png">
-          </div>
+          <button type="button" class="icon-button" title="Remover Usuário" ng-click="delUser($index)" ng-if="hoveredIndex == $index">
+            <i class="fa fa-remove"></i>
+          </button>
         </td>
       </tr>
     </table>
@@ -86,13 +86,13 @@
         <tr>
           <td>
             <button type="submit" class="icon-button" title="Salvar">
-              <img alt="X" src="../../images/icons/checked-white-16.png">
+              <i class="fa fa-check"></i>
             </button>
           </td>
           <td>
-            <div class="icon-button" title="Cancelar" ng-click="reloadUsers()">
-              <img alt="X" src="../../images/icons/delete-white-16.png">
-            </div>
+            <button type="button" class="icon-button" title="Cancelar" ng-click="reloadUsers()">
+              <i class="fa fa-close"></i>
+            </button>
           </td>
         </tr>
       </table>
