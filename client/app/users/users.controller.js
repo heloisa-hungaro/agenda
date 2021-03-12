@@ -40,6 +40,7 @@ angular
         $scope.header = 'Novo Usuário';
         $scope.userData.name = '';
         $scope.userData.login = '';
+        $scope.userData.pwd = '';
         $scope.userData.perm_add = 0;
         $scope.userData.perm_edit = 0;
         $scope.userData.perm_del = 0;
@@ -48,6 +49,7 @@ angular
         editUserId = $scope.allUsers[$index].id;
         $scope.userData.name = $scope.allUsers[$index].name;
         $scope.userData.login = $scope.allUsers[$index].login;
+        $scope.userData.pwd = '';
         $scope.userData.perm_add = $scope.allUsers[$index].perm_add;
         $scope.userData.perm_edit = $scope.allUsers[$index].perm_edit;
         $scope.userData.perm_del = $scope.allUsers[$index].perm_del;
@@ -66,7 +68,7 @@ angular
 
     function editUser(editUserId) { 
       let editData = $scope.userData;
-      delete editData.psw;
+      delete editData.pwd;
       UsersService.editUser(editData, editUserId).then (function(result) { 
         //alert(result);
         $scope.reloadUsers();
