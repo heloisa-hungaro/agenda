@@ -36,7 +36,7 @@ footer, header {
   background-color: #1d346c;
   color: white;
   text-align: center;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 footer {
@@ -51,7 +51,7 @@ header {
 }
 
 header .button {
-  float: left;
+  float: right;
 }
 
 header .header-right {
@@ -68,16 +68,17 @@ header #username {
 }
 
 header #appname {
+  position: absolute;
   padding: 10px;
   width: 100%;
   left: 0;
   right: 0;
-  text-align: center;
 }
 
 .list table {
-  width: 540px;
+  width: 100%;
   border-collapse: collapse;
+  border-style: hidden;
 }
 
 .list table .btn-cell {
@@ -88,16 +89,25 @@ header #appname {
   height: 22px;
 }
 
-.list table th, .list table td {
-  border: 0px solid black;
+.list table tr:nth-child(odd) {
+  background-color: #f2f2f2;
 }
 
-.list table th img, .list table td img {
-  vertical-align: middle;
+.list table tr:hover {
+  background-color: #ddd;
+}
+
+.list table th {
+  background-color: white;
+  color: #1d346c;
+}
+
+.list table th, .list table td {
+  border: 1px solid #ddd;
 }
 
 .list table .perm {
-  font-size: 12px;
+  font-size: 11px;
 }
 
 .icon-button, .icon-button-refresh, .button {
@@ -138,7 +148,7 @@ header #appname {
   text-align: center;
   border: 1px solid #1d346c;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 12px;
 }
 
 .login {
@@ -160,8 +170,18 @@ header #appname {
 }
 
 /* Extra small devices (phones, 600px and down) */
+header #appname {
+  text-align: left;
+  margin-left: 10px;
+}
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 /* Medium devices (landscape tablets, 768px and up) */
 /* Large devices (laptops/desktops, 992px and up) */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
+@media only screen and (min-width: 992px) {
+  header #appname {
+    text-align: center;
+  }
+}
 /*# sourceMappingURL=style.css.map */

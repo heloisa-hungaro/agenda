@@ -26,7 +26,7 @@
 
 <body>
   <header ng-controller="Logout">
-    <div id="appname" ng-style="isLogged ? {'position': 'absolute'} : ''">Agenda {{companyName}} v{{version}}</div>
+    <div id="appname" ng-style="isLogged ? '' : {'text-align': 'center'}">Agenda {{companyName}} v{{version}}</div>
     <div class="header-right" ng-show="isLogged">
       <div id="username">{{userLogged}}</div>
       <div class="button" ng-click="submitLogout()">Sair</div>

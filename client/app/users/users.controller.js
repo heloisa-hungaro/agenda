@@ -38,6 +38,8 @@ angular
       $scope.editType = type;
       if (type=='add') {
         $scope.header = 'Novo Usuário';
+        $scope.userData.name = '';
+        $scope.userData.login = '';
         $scope.userData.perm_add = 0;
         $scope.userData.perm_edit = 0;
         $scope.userData.perm_del = 0;
@@ -54,7 +56,7 @@ angular
 
     function addUser() { 
       UsersService.addUser($scope.userData).then (function(result) { 
-        alert(result);
+        //alert(result);
         $scope.reloadUsers();
       }, function(error){
         //If an error happened, handle it here
@@ -66,7 +68,7 @@ angular
       let editData = $scope.userData;
       delete editData.psw;
       UsersService.editUser(editData, editUserId).then (function(result) { 
-        alert(result);
+        //alert(result);
         $scope.reloadUsers();
       }, function(error){
         //If an error happened, handle it here
@@ -86,7 +88,7 @@ angular
       if (confirm(`Deseja realmente remover o usuário ${$scope.allUsers[$index].name} (${$scope.allUsers[$index].login})?`)) {
         UsersService.delUser($scope.allUsers[$index].id).then (function(result) {
           $scope.allUsers.splice($index,1);  
-          alert(result);
+          //alert(result);
         }, function(error){
           //If an error happened, handle it here
           alert(error);

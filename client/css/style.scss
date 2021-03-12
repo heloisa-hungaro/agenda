@@ -1,5 +1,5 @@
 $font-family: Verdana, Helvetica, sans-serif;
-$font-size: 14px;
+$font-size: 12px;
 $primary-color: rgb(29, 52, 108);
 $secondary-color: rgb(255, 255, 255);
 $button-color: rgb(26, 110, 197); 
@@ -58,7 +58,7 @@ header {
   top: 0;
   height: 60px;
   .button {
-    float: left;
+    float: right;
   }
   .header-right {
     float: right;
@@ -72,32 +72,40 @@ header {
     border-radius: 4px;
   }
   #appname {
+    position: absolute;
     padding: 10px;
     width: 100%;
     left:0;
     right:0;
-    text-align: center;
   }
 }
 
 .list{
   table {
-    width: 540px;
+    width: 100%;
     border-collapse: collapse;
+    border-style: hidden;
     .btn-cell {
       width: $button-width + 4px;
     }
     tr {
       height: 22px;
     }
+    tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+    tr:hover {
+      background-color: #ddd;
+    }
+    th {
+      background-color:$secondary-color;
+      color: $primary-color;
+    }
     th, td {
-      border: 0px solid black;
-      img {
-        vertical-align: middle;
-      }
+      border: 1px solid #ddd;
     }
     .perm {
-      font-size: $font-size - 2px;
+      font-size: $font-size - 1px;
     }
   }
 }
@@ -173,12 +181,27 @@ header {
 /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {}
 
+header {
+  #appname {
+    text-align: left;
+    margin-left: 10px;
+  }
+}
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (min-width: 600px) {}
 
 /* Medium devices (landscape tablets, 768px and up) */
-@media only screen and (min-width: 768px) {}
+@media only screen and (min-width: 768px) {
+
+}
 
 /* Large devices (laptops/desktops, 992px and up) */
 /* Extra large devices (large laptops and desktops, 1200px and up) */
-@media only screen and (min-width: 992px) {}
+@media only screen and (min-width: 992px) {
+
+  header {
+    #appname {
+      text-align: center;
+    }
+  }
+}
