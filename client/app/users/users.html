@@ -7,7 +7,7 @@
   <div class="list" ng-hide="editMode"> 
     <table>
       <tr>
-        <th style="border-width: 0px;" colspan="7">
+        <th class="add-button" colspan="7">
           <button type="button" class="icon-button" title="Adicionar Usuário" ng-click="gotoEditMode('add', null)">
             <i class="fa fa-plus"></i>
           </button>
@@ -16,19 +16,19 @@
       <tr>
       </tr>
       <tr>
-        <th style="border-top: 0px;"></th>
-        <th style="border-top: 0px;" colspan="2"></th>
-        <th style="border-width: 0px;" colspan="3">Permissões</th>
-        <th style="border-top: 0px;"></th>
+        <th class="upper-th"></th>
+        <th class="upper-th" colspan="2"></th>
+        <th class="upper-th" colspan="3">Permissões</th>
+        <th class="upper-th"></th>
       </tr>
       <tr>
-        <th></th>
-        <th style="width: 186px;">Nome</th>
-        <th style="width: 116px;">Login</th>
-        <th class="perm" style="width: 60px;">Adicionar</th>
-        <th class="perm" style="width: 37px;">Editar</th>
-        <th class="perm" style="width: 58px;">Remover</th>
-        <th></th>
+        <th class="btn-cell"></th>
+        <th id="name">Nome</th>
+        <th id="login">Login</th>
+        <th class="perm" id="perm-add">Adicionar</th>
+        <th class="perm" id="perm-edit">Editar</th>
+        <th class="perm" id="perm-del">Remover</th>
+        <th class="btn-cell"></th>
       </tr>
       <tr ng-repeat="x in allUsers" ng-mouseenter="hoveredIndex = $index" ng-mouseleave="hoveredIndex = -1">
         <td class="btn-cell">

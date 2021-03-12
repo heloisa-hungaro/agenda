@@ -22,15 +22,11 @@ h1 {
   color: $primary-color;
 }
 
-input {
+input[type=text], input[type=password] {
   margin: 10px;
 }
 
-input[type=checkbox] {
-  margin: 0px;
-}
-
-button, input[type="submit"], input[type="reset"] {
+button, input[type=submit], input[type=reset] {
 	border: none;
 	font: inherit;
 	outline: inherit;
@@ -53,9 +49,9 @@ footer {
 
 header {
   @extend %header-footer;
+  top: 0;
   overflow: hidden;
   padding: 10px 20px;
-  top: 0;
   height: 60px;
   .button {
     float: right;
@@ -66,10 +62,7 @@ header {
   }
   #username { 
     float: left;
-    text-align: center;
     padding: 10px;
-    text-decoration: none;
-    border-radius: 4px;
   }
   #appname {
     position: absolute;
@@ -97,15 +90,36 @@ header {
     tr:hover {
       background-color: #ddd;
     }
+    th, td {
+      border: 1px solid #ddd;
+    }
     th {
       background-color:$secondary-color;
       color: $primary-color;
     }
-    th, td {
-      border: 1px solid #ddd;
+    .upper-th {
+      border-top: 0px;
+    }
+    .add-button {
+      border-width: 0px;
     }
     .perm {
       font-size: $font-size - 1px;
+    }
+    #name {
+      width: 186px;
+    }
+    #login {
+      width: 116px;
+    }
+    #perm-add {
+      width: 60px;
+    }
+    #perm-edit {
+      width: 37px;
+    }
+    #perm-del {
+      width: 58px;
     }
   }
 }
@@ -202,6 +216,7 @@ header {
   header {
     #appname {
       text-align: center;
+      margin-left: 0px;
     }
   }
 }

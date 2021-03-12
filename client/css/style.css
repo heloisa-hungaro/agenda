@@ -15,15 +15,11 @@ h1 {
   color: #1d346c;
 }
 
-input {
+input[type=text], input[type=password] {
   margin: 10px;
 }
 
-input[type=checkbox] {
-  margin: 0px;
-}
-
-button, input[type="submit"], input[type="reset"] {
+button, input[type=submit], input[type=reset] {
   border: none;
   font: inherit;
   outline: inherit;
@@ -44,9 +40,9 @@ footer {
 }
 
 header {
+  top: 0;
   overflow: hidden;
   padding: 10px 20px;
-  top: 0;
   height: 60px;
 }
 
@@ -61,10 +57,7 @@ header .header-right {
 
 header #username {
   float: left;
-  text-align: center;
   padding: 10px;
-  text-decoration: none;
-  border-radius: 4px;
 }
 
 header #appname {
@@ -97,17 +90,45 @@ header #appname {
   background-color: #ddd;
 }
 
+.list table th, .list table td {
+  border: 1px solid #ddd;
+}
+
 .list table th {
   background-color: white;
   color: #1d346c;
 }
 
-.list table th, .list table td {
-  border: 1px solid #ddd;
+.list table .upper-th {
+  border-top: 0px;
+}
+
+.list table .add-button {
+  border-width: 0px;
 }
 
 .list table .perm {
   font-size: 11px;
+}
+
+.list table #name {
+  width: 186px;
+}
+
+.list table #login {
+  width: 116px;
+}
+
+.list table #perm-add {
+  width: 60px;
+}
+
+.list table #perm-edit {
+  width: 37px;
+}
+
+.list table #perm-del {
+  width: 58px;
 }
 
 .icon-button, .icon-button-refresh, .button {
@@ -182,6 +203,7 @@ header #appname {
 @media only screen and (min-width: 992px) {
   header #appname {
     text-align: center;
+    margin-left: 0px;
   }
 }
 /*# sourceMappingURL=style.css.map */
