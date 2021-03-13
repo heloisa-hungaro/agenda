@@ -17,6 +17,8 @@ h1 {
 
 input[type=text], input[type=password] {
   margin: 10px;
+  width: 200px;
+  text-align: center;
 }
 
 button, input[type=submit], input[type=reset] {
@@ -111,23 +113,23 @@ header #appname {
   font-size: 11px;
 }
 
-.list table #name {
+.list table #user-name {
   width: 186px;
 }
 
-.list table #login {
+.list table #user-login {
   width: 116px;
 }
 
-.list table #perm-add {
+.list table #user-perm-add {
   width: 60px;
 }
 
-.list table #perm-edit {
+.list table #user-perm-edit {
   width: 37px;
 }
 
-.list table #perm-del {
+.list table #user-perm-del {
   width: 58px;
 }
 
@@ -163,8 +165,8 @@ header #appname {
   cursor: pointer;
 }
 
-.box, .login, .users {
-  margin: 100px auto;
+.box, #login-box, #users-box, #contacts-box {
+  margin: 80px auto 60px;
   padding: 20px;
   text-align: center;
   border: 1px solid #1d346c;
@@ -172,15 +174,15 @@ header #appname {
   font-size: 12px;
 }
 
-.login {
+#login-box {
   width: 300px;
 }
 
-.login .button {
+#login-box .button {
   margin: auto;
 }
 
-.users {
+#users-box, #contacts-box {
   width: 580px;
 }
 

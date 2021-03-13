@@ -3,8 +3,8 @@
 angular
 .module('agenda')
   .controller('Login', function($scope, $rootScope, $location, AuthService) {
-    $scope.user = ""; 
-    $scope.pwd = "";
+    $scope.user = "a"; 
+    $scope.pwd = "123";
     $rootScope.userLogged = null;
     $rootScope.isLogged = false;
 

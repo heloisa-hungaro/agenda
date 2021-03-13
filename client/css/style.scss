@@ -24,6 +24,8 @@ h1 {
 
 input[type=text], input[type=password] {
   margin: 10px;
+  width: 200px;
+  text-align: center;
 }
 
 button, input[type=submit], input[type=reset] {
@@ -106,19 +108,19 @@ header {
     .perm {
       font-size: $font-size - 1px;
     }
-    #name {
+    #user-name {
       width: 186px;
     }
-    #login {
+    #user-login {
       width: 116px;
     }
-    #perm-add {
+    #user-perm-add {
       width: 60px;
     }
-    #perm-edit {
+    #user-perm-edit {
       width: 37px;
     }
-    #perm-del {
+    #user-perm-del {
       width: 58px;
     }
   }
@@ -160,7 +162,7 @@ header {
 }
 
 .box {
-  margin: 100px auto;
+  margin: 80px auto 60px;
   padding: 20px;
   text-align: center;
   border: 1px solid $primary-color;
@@ -168,19 +170,16 @@ header {
   font-size: $font-size;
 }
 
-.login {
+#login-box {
   @extend .box;
   width: 300px;
   .button {
     margin: auto;
   }
 }
-.users {
+#users-box, #contacts-box {
   @extend .box;
   width: 580px;
-  // h1 {
-    //   padding: 0 90px 20px 10px;
-    // }
 }
 
 .edit-users{

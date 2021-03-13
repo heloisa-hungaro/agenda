@@ -1,9 +1,9 @@
 angular
   .module('agenda')
-    .service('UsersService',
+    .service('ContactsService',
       function ($http, $q) {
 
-        this.getAllUsers = function () {
+        this.getSelectedContacts = function (search) {
           var deferred = $q.defer();
           var onSuccess = function (response) {
               deferred.resolve(response.data);
@@ -12,12 +12,12 @@ angular
              deferred.reject(response.data.message);
           };
          
-          $http({ method : 'GET', url : 'http://localhost:4000/users'})
+          $http({ method : 'GET', url : `http://localhost:4000/contacts?name=${search}`})
             .then(onSuccess, onError);
           return deferred.promise;
         };
 
-        this.delUser = function (userId) {
+        this.delContact = function (contactId) {
           var deferred = $q.defer();
           var onSuccess = function (response) {
               deferred.resolve(response.data.message);
@@ -26,12 +26,12 @@ angular
              deferred.reject(response.data.message);
           };
          
-          $http({ method : 'DELETE', url : `http://localhost:4000/users/${userId}`})
+          $http({ method : 'DELETE', url : `http://localhost:4000/contacts/${contactsId}`})
             .then(onSuccess, onError);
           return deferred.promise;
         };
 
-        this.addUser = function (userData) {
+        this.addContact = function (contactData) {
           var deferred = $q.defer();
           var onSuccess = function (response) {
               deferred.resolve(response.data.message);
@@ -41,22 +41,19 @@ angular
           };
           const reqBody = JSON.stringify(
             { 
-              'name': userData.name,
-              'login': userData.login, 
-              'pwd': userData.pwd,
-              'permissions': {
-                "add": userData.perm_add,
-                "edit": userData.perm_edit,
-                "del": userData.perm_del
-              }
+              'name': contactData.name,
+              'address': contactData.address, 
+              'phones': contactData.phones,
+              'emails': contactData.emails,
+              'notes': contactData.notes
             }
           );
-          $http({ method : 'POST', url : 'http://localhost:4000/users', data : reqBody, headers: {'Content-Type': 'application/json'}})
+          $http({ method : 'POST', url : 'http://localhost:4000/contacts', data : reqBody, headers: {'Content-Type': 'application/json'}})
             .then(onSuccess, onError);
           return deferred.promise;
         };
 
-        this.editUser = function (userData, userId) {
+        this.editContact = function (contactData, contactId) {
           var deferred = $q.defer();
           var onSuccess = function (response) {
               deferred.resolve(response.data.message);
@@ -64,8 +61,8 @@ angular
           var onError = function (response) {
              deferred.reject(response.data.message);
           };
-          const reqBody = JSON.stringify(userData);
-          $http({ method : 'PATCH', url : `http://localhost:4000/users/${userId}`, data : reqBody, headers: {'Content-Type': 'application/json'}})
+          const reqBody = JSON.stringify(contactData);
+          $http({ method : 'PATCH', url : `http://localhost:4000/contacts/${contactId}`, data : reqBody, headers: {'Content-Type': 'application/json'}})
             .then(onSuccess, onError);
           return deferred.promise;
         };

@@ -1,5 +1,5 @@
-<div class="users">
-  <button type="button" class="icon-button-refresh" title="Atualizar Lista de Usuários" ng-click="reloadUsers()">
+<div id="users-box">
+  <button type="button" class="icon-button-refresh" title="Atualizar Lista de Usuários" ng-hide="editMode" ng-click="reloadUsers()">
     <i class="fa fa-refresh"></i>
   </button>
   <h1>{{header}}</h1>
@@ -23,11 +23,11 @@
       </tr>
       <tr>
         <th class="btn-cell"></th>
-        <th id="name">Nome</th>
-        <th id="login">Login</th>
-        <th class="perm" id="perm-add">Adicionar</th>
-        <th class="perm" id="perm-edit">Editar</th>
-        <th class="perm" id="perm-del">Remover</th>
+        <th id="user-name">Nome</th>
+        <th id="user-login">Login</th>
+        <th class="perm" id="user-perm-add">Adicionar</th>
+        <th class="perm" id="user-perm-edit">Editar</th>
+        <th class="perm" id="user-perm-del">Remover</th>
         <th class="btn-cell"></th>
       </tr>
       <tr ng-repeat="x in allUsers" ng-mouseenter="hoveredIndex = $index" ng-mouseleave="hoveredIndex = -1">

@@ -1,3 +1,42 @@
-<div class="login-box">
-    <h1>Contatos</h1>
-</div>
+<div id="contacts-box">
+    <button type="button" class="icon-button-refresh" title="Atualizar Lista de Contatos" ng-hide="editMode" ng-click="reloadContacts()">
+      <i class="fa fa-refresh"></i>
+    </button>
+    <h1>{{header}}</h1>
+    <!-- list contacts -->
+    <div class="list" ng-hide="editMode"> 
+      <table>
+        <tr>
+          <th class="add-button">
+            <button type="button" class="icon-button" title="Adicionar Contato" ng-click="gotoEditMode('add', null)">
+              <i class="fa fa-plus"></i>
+            </button>
+          </th>
+        </tr>
+
+        <tr ng-repeat="x in selectedContacts" ng-mouseenter="hoveredIndex = $index" ng-mouseleave="hoveredIndex = -1">
+
+        </tr>
+      </table>
+    </div>
+  
+    <!-- add/edit user -->
+    <div class="edit-contacts" ng-show="editMode">
+      <form ng-submit="modifyContact()">
+        <table>
+          <tr>
+            <td>
+              <button type="submit" class="icon-button" title="Salvar">
+                <i class="fa fa-check"></i>
+              </button>
+            </td>
+            <td>
+              <button type="button" class="icon-button" title="Cancelar" ng-click="reloadContacts()">
+                <i class="fa fa-close"></i>
+              </button>
+            </td>
+          </tr>
+        </table>
+      </form>
+    </div>
+  </div>
